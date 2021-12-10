@@ -14,5 +14,6 @@ module.exports = {
         view:require('./border/view'),
         write:require('./border/write'),
         modify:require('./border/modify'),
+        delete:require('./border/delete')
     }
 }
