@@ -18,7 +18,7 @@ module.exports = (req, res) => {
       // if not userInfo 404 Fail err
       if (!data) {
         // 오류 발생시 기존 로그인 페이지로 리다이렉트 합니다.
-        backURL=req.header('Referer') || '/';
+        let backURL=req.header('Referer') || '/';
         res.redirect(backURL);
         return ;//res.status(404).send("invalid user");
       }
@@ -36,7 +36,7 @@ module.exports = (req, res) => {
       // res.json(err);
       // 오류 발생시 sequelize 에러를 돌려주는 것은 부적절해 보입니다.
       // 기존 로그인 페이지로 리다이렉트 합니다.
-      backURL=req.header('Referer') || '/';
+      let backURL=req.header('Referer') || '/';
       res.redirect(backURL);
     });
 };

@@ -8,9 +8,13 @@ module.exports = {
         return sign(data, process.env.ACCESS_SECRET, {expiresIn:"15s"});            
     },
     sendAccessToken : (code, res, accessToken) => {
-        res.status(code)
-        .cookie('hhkToken',accessToken,{httpOnly:true,secure:true,sameSite:'Strict'})
-        .json({message: 'ok'});
+        
+        res.cookie('hhkToken',accessToken,{httpOnly:true,secure:true,sameSite:'Strict'});
+        //토큰을 보낸 뒤 index.html로 리다이렉트 합니다.
+        let backURL=req.header('Referer') || '/';
+        const fromnow = backURL.lastindexOf('/');
+        backURL = backURL.slice(0, fromnow + 1) + 'index.html';
+        res.redirect(backURL);
     },
     isAuthorized: (req) => {
         
