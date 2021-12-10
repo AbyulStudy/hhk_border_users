@@ -2,6 +2,11 @@
   npm install
     - dotenv
     - cors
+    - sequelize
+    - mysql2
+    - sequelize-auto
+    - sequelize-cli
+    - cookie-parser
 */
 const fs = require('fs');
 const https = require('https');
