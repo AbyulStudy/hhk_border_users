@@ -30,6 +30,10 @@ module.exports = (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res.json(err);
+      // res.json(err);
+      // 오류 발생시 sequelize 에러를 돌려주는 것은 부적절해 보입니다.
+      // 기존 로그인 페이지로 리다이렉트 합니다.
+      backURL=req.header('Referer') || '/';
+      res.redirect(backURL);
     });
 };
