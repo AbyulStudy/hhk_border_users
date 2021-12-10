@@ -2,6 +2,11 @@
   npm install
     - dotenv
     - cors
+    - sequelize
+    - mysql2
+    - sequelize-auto
+    - sequelize-cli
+    - cookie-parser
 */
 const fs = require('fs');
 const https = require('https');
@@ -16,6 +21,7 @@ const borderRouter = require('./routes/border');
 const HTTPS_PORT = process.env.HTTPS_PORT || 4500;
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}))
 app.use(cookieParser());
 app.get('/',(req,res) => {
   res.send(`
