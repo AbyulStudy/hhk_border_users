@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /home/ubuntu/hhk_border_users/back
 npm install
-npm install pm2@latest -g
+npm install pm2 -g
 # sudo apt-get update
 # sudo apt-get install authbind
 # sudo touch /etc/authbind/byport/80
