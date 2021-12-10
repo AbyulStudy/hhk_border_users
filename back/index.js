@@ -7,6 +7,7 @@ const fs = require('fs');
 const https = require('https');
 const express = require('express');
 const app = express();
+const cookieParser = require('cookie-parser');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -15,6 +16,7 @@ const borderRouter = require('./routes/border');
 const HTTPS_PORT = process.env.HTTPS_PORT || 4500;
 
 app.use(express.json());
+app.use(cookieParser());
 app.get('/',(req,res) => {
   res.send(`
     https://localhost:4500/index/

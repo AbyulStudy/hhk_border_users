@@ -48,9 +48,11 @@ create table `user`(
 COLLATE='utf8mb4_unicode_ci'
 ENGINE=InnoDB;
 
+// user_idx 의 추가??? [추가 삭제 권한을 위한 ???] - writer_email 로 확인 ??
+// user_idx 로 선택함
 create table `border`(
     `border_idx` INT(10) AUTO_INCREMENT,
-    `writer_email` VARCHAR(89) NOT NULL COMMENT '작성자 이메일' COLLATE 'utf8mb4_unicode_ci',
+    `user_idx` INT(10) NOT NULL COMMENT '작성자 idx',
     `writer_name` VARCHAR(30) NOT NULL COMMENT '작성자 이름' COLLATE 'utf8mb4_unicode_ci',
     `subject` VARCHAR(30) NOT NULL COMMENT '글 제목' COLLATE 'utf8mb4_unicode_ci',
     `category` VARCHAR(30) COMMENT '글 카테고리' COLLATE 'utf8mb4_unicode_ci',
@@ -65,7 +67,7 @@ ENGINE=InnoDB;
 
 create table `reply`(
     `reply_idx` INT(10) NOT NULL AUTO_INCREMENT,
-    `border_idx` INT(10),
+    `border_idx` INT(10) NOT NULL,
     `reply_content` VARCHAR(1024) NOT NULL COMMENT '댓글 내용' COLLATE 'utf8mb4_unicode_ci',
     `reply_user` VARCHAR(30) NOT NULL COMMENT '댓글 작성자' COLLATE 'utf8mb4_unicode_ci',
     `reply_date` DATETIME DEFAULT NOW() NOT NULL COMMENT '댓글 작성일',

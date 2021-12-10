@@ -10,6 +10,10 @@ module.exports = {
     },
     border:{
         borderhello: require('./border/hello'),
-
+        list:require('./border/list'),
+        view:require('./border/view'),
+        write:require('./border/write'),
+        modify:require('./border/modify'),
+        delete:require('./border/delete')
     }
 }

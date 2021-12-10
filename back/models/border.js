@@ -7,10 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    writer_email: {
-      type: DataTypes.STRING(89),
+    user_idx: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      comment: "작성자 이메일"
+      comment: "작성자 idx"
     },
     writer_name: {
       type: DataTypes.STRING(30),

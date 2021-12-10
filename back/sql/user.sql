@@ -1,1 +1,1 @@
-INSERT INTO user VALUES (NULL,'testuser@test.com','test',NULL, default);
+INSERT INTO user VALUES (NULL,'testuser@test.com','test','test',NULL, default);
