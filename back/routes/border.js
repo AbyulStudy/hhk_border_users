@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
+const Controllers = require('../controllers')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource - border');
-});
+/* GET home page. */
+router.get('/', Controllers.border.borderhello);
+router.get('/list',Controllers.border.list);
+router.post('/view',Controllers.border.view);
+router.post('/write',Controllers.border.write);
+router.put('/modify/:border_idx',Controllers.border.modify);
 
 module.exports = router;
