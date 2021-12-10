@@ -14,7 +14,7 @@ module.exports = {
         let backURL=req.header('Referer') || '/';
         const fromnow = backURL.lastindexOf('/');
         backURL = backURL.slice(0, fromnow + 1) + 'index.html';
-        res.redirect(backURL);
+        res.redirect('https://exxocism.github.io/simpleboard-test/');
     },
     isAuthorized: (req) => {
         
