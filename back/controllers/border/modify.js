@@ -22,10 +22,8 @@ module.exports = (req, res) => {
     }
   }
   const { border_idx } = req.params;
-  const { user_idx, name } = accessTokenData;
-  // const { user_idx } = req.body;
+  const { user_idx } = accessTokenData;
   const { subject, category, content } = req.body;
-  console.log(accessTokenData);
   border
     .update(
       {
