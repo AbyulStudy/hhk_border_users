@@ -13,6 +13,8 @@ const https = require('https');
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
+//cors 정책을 지정하기 위한 모듈 설치 
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -20,6 +22,12 @@ const borderRouter = require('./routes/border');
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 4500;
 
+//cors 정책 설정
+app.use(cors({
+  origin: 'https://boardapi.eax.kr:4500',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser());
