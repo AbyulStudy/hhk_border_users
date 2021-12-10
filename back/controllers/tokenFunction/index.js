@@ -17,7 +17,6 @@ module.exports = {
         let cookie;
         try{
             cookie = req.cookies.hhkToken;
-            console.log(cookie)
             try {
                 return verify(cookie,process.env.ACCESS_SECRET);
             } catch (err) {
