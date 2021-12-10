@@ -17,7 +17,10 @@ module.exports = (req, res) => {
     .then((data) => {
       // if not userInfo 404 Fail err
       if (!data) {
-        return res.status(404).send("invalid user");
+        // 오류 발생시 기존 로그인 페이지로 리다이렉트 합니다.
+        backURL=req.header('Referer') || '/';
+        res.redirect(backURL);
+        return ;//res.status(404).send("invalid user");
       }
 
       // result data - delete password
