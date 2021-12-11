@@ -1,5 +1,5 @@
 const { user } = require('../../models');
-const { isAuthorized } = require('../tokenFunction')
+const { isAuthorized } = require('../tokenFunction');
 
 module.exports = (req, res) => {
 
