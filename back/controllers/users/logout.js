@@ -1,5 +1,7 @@
 module.exports = (req,res) => {
-    console.log("./controllers/users/logout.js");
-
-    res.status(205).cookie('hhkToken','',{maxAge:0}).send('Logged out successfully');
+    let backURL=req.header('Referer') || '/';
+    if( backURL.includes('github.io') ) backURL += 'simpleboard-test/';
+    backURL += 'index.html';
+    res.cookie('hhkToken', '', { maxAge: 0} );
+    return res.redirect(backURL);
 }

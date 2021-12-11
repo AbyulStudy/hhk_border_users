@@ -5,7 +5,7 @@ const Controllers = require('../controllers')
 /* GET users listing. */
 router.get('/', Controllers.users.usershello);
 router.post('/login', Controllers.users.login);
-router.post('/logout', Controllers.users.logout);
+router.get('/logout', Controllers.users.logout);
 router.post('/signup', Controllers.users.signup);
 router.get('/userinfo', Controllers.users.userInfo);
 

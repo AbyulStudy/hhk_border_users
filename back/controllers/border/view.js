@@ -3,7 +3,7 @@ const { border } = require("../../models");
 module.exports = (req, res) => {
   console.log("./controllers/border/view.js");
   try{
-    const {border_idx} = req.body;
+    const {border_idx} = req.query;
     border
     .findOne({
       where:{
