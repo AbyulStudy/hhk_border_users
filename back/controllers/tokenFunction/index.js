@@ -7,14 +7,14 @@ module.exports = {
         // jwt.sign(payload, secretOrPrivateKey, [options, callback])
         return sign(data, process.env.ACCESS_SECRET, {expiresIn:"15s"});            
     },
-    sendAccessToken : (code, res, accessToken) => {
+    sendAccessToken : (req, res, accessToken) => {
         
         res.cookie('hhkToken',accessToken,{httpOnly:true,secure:true,sameSite:'Strict'});
         //토큰을 보낸 뒤 index.html로 리다이렉트 합니다.
         let backURL=req.header('Referer') || '/';
-        const fromnow = backURL.lastindexOf('/');
-        backURL = backURL.slice(0, fromnow + 1) + 'index.html';
-        res.redirect('https://exxocism.github.io/simpleboard-test/index.html');
+        if( backURL.includes('github.io') ) backURL += 'simpleboard-test/';
+        backURL += 'index.html';
+        res.redirect(backURL);
     },
     isAuthorized: (req) => {
         

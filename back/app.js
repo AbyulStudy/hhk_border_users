@@ -31,6 +31,14 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser());
+app.use( (req, res, next) => {
+  //enable logger
+  const str = `METHOD:${req.method}, URL:${req.path}, Args:`;
+  console.log( str );
+  if( req.method === 'GET' ) console.dir( req.query );
+  else console.dir( req.body );
+  next();
+});
 app.get('/',(req,res) => {
   res.send(`
     https://localhost:4500/index/

@@ -2,11 +2,11 @@ const { user } = require("../../models");
 const { generateAccessToken, sendAccessToken } = require("../tokenFunction");
 
 module.exports = (req, res) => {
-  console.log("./controllers/users/login.js");
+  //console.log("./controllers/users/login.js");
   const { email, password } = req.body;
-  console.log("email : ", email);
-  console.log("password : ", password);
-
+  //console.log("email : ", email);
+  //console.log("password : ", password);
+  
   user
     .findOne({
       where: {
@@ -19,8 +19,12 @@ module.exports = (req, res) => {
       if (!data) {
         // 오류 발생시 기존 로그인 페이지로 리다이렉트 합니다.
         let backURL=req.header('Referer') || '/';
+        if( backURL.includes('github.io') ) backURL += 'simpleboard-test/';
+        //console.log(`referer : ${backURL}`);
+        backURL += 'login.html';
         res.redirect(backURL);
-        return ;//res.status(404).send("invalid user");
+        return ;
+        //res.status(404).send("invalid user");
       }
 
       // result data - delete password
@@ -29,7 +33,7 @@ module.exports = (req, res) => {
       const accessToken = generateAccessToken(data.dataValues);
       console.log("accessToken : ", accessToken);
       // send - AccessToken
-      sendAccessToken(200, res, accessToken);
+      sendAccessToken(req, res, accessToken);
     })
     .catch((err) => {
       console.error(err);
@@ -37,6 +41,9 @@ module.exports = (req, res) => {
       // 오류 발생시 sequelize 에러를 돌려주는 것은 부적절해 보입니다.
       // 기존 로그인 페이지로 리다이렉트 합니다.
       let backURL=req.header('Referer') || '/';
-      res.redirect('https://exxocism.github.io/simpleboard-test/login.html');
+      if( backURL.includes('github.io') ) backURL += 'simpleboard-test/';
+      //console.log(`referer : ${backURL}`);
+      backURL += 'login.html';
+      res.redirect(backURL);
     });
 };
