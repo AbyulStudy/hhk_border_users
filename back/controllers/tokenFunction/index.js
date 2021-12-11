@@ -9,7 +9,8 @@ module.exports = {
     },
     sendAccessToken : (req, res, accessToken) => {
         
-        res.cookie('hhkToken',accessToken,{httpOnly:true,secure:true,sameSite:'Strict'});
+        res.cookie('hhkToken',accessToken,{ httpOnly:true, secure:true, sameSite:'None' });
+        //res.cookie('hhkToken',accessToken,{ httpOnly:true, secure:true, domain: '127.0.0.1', sameSite:'Lax' });
         //토큰을 보낸 뒤 index.html로 리다이렉트 합니다.
         let backURL=req.header('Referer') || '/';
         if( backURL.includes('github.io') ) backURL += 'simpleboard-test/';

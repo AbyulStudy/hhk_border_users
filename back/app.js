@@ -24,7 +24,7 @@ const HTTPS_PORT = process.env.HTTPS_PORT || 4500;
 
 //cors 정책 설정
 app.use(cors({
-  origin: 'https://boardapi.eax.kr:4500',
+  origin: ['https://exxocism.github.io', 'https://boardapi.eax.kr:4500', 'http://127.0.0.1:5555'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
@@ -33,7 +33,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use( (req, res, next) => {
   //enable logger
-  const str = `METHOD:${req.method}, URL:${req.path}, Args:`;
+  const str = `METHOD:${req.method}, FROM:${req.ip} URL:${req.path}, cookie:${Object.keys(req.cookies).join(', ')}`;
   console.log( str );
   if( req.method === 'GET' ) console.dir( req.query );
   else console.dir( req.body );
