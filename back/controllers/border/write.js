@@ -7,12 +7,17 @@ module.exports = (req, res) => {
 
   // 잘못된 accessToken을 받았을 경우
   if (!accessTokenData) {
-    return res.status(401).send({ message: "not authorized" });
+        
+    let backURL=req.header('Referer') || '/';
+    if( backURL.includes('github.io') ) backURL += 'simpleboard-test/';
+    backURL += 'index.html';
+    return res.redirect(backURL);
+    //return res.status(401).send({ message: "not authorized" });
   }
 
   // 정상적인 데이터를 받지 못한 경우 (필수 데이터가 없는 경우)
-  if(!req.body.subject || !req.body.category || !req.body.content){
-    return res.status(401).send({ message: "lack of data" })
+  if(!req.body['subject'] || !req.body['category'] || !req.body['content']){
+    return res.status(401).send({ message: "lack of data" });
   }
   
   // 정상적인 데이터를 받지 못한 경우 (불필요한 데이터를 받은 경우)
@@ -35,11 +40,19 @@ module.exports = (req, res) => {
     content,
   })
   .then(border => {
-    res.json({border});
+    //res.json({border});
+    let backURL=req.header('Referer') || '/';
+    if( backURL.includes('github.io') ) backURL += 'simpleboard-test/';
+    backURL += 'index.html';
+    return res.redirect(backURL);
   })
   .catch(err => {
-    console.error(err);
-  })
 
+    let backURL=req.header('Referer') || '/';
+    if( backURL.includes('github.io') ) backURL += 'simpleboard-test/';
+    backURL += 'createThread.html';
+    console.error(err);
+    return res.redirect(backURL);
+  })
 };
 

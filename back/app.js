@@ -24,7 +24,7 @@ const HTTPS_PORT = process.env.HTTPS_PORT || 4500;
 
 //cors 정책 설정
 app.use(cors({
-  origin: ['https://exxocism.github.io', 'https://boardapi.eax.kr:4500', 'http://127.0.0.1:5555'],
+  origin: ['https://exxocism.github.io', 'https://boardapi.eax.kr:4500', 'http://127.0.0.1:5555', 'http://localhost', 'http://192.168.1.21:5555'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));

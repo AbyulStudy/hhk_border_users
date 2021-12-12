@@ -3,7 +3,9 @@ const { border } = require("../../models");
 module.exports = (req, res) => {
   console.log("./controllers/border/list.js");
   border
-  .findAll()
+  .findAll({
+    order: [['border_idx', 'DESC']]
+  })
   .then(borders => {
     const borderList = borders.length;
     for(let i = 0; i < borderList; i++){

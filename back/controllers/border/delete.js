@@ -10,11 +10,13 @@ module.exports = (req, res) => {
     return res.status(401).send({ message: "not authorized" });
   }
   // 정상적인 데이터를 받지 못한 경우 (필수 데이터가 없는 경우)
-  if(!req.params.border_idx){
+  if(!req.params['border_idx']){
     return res.status(401).send({ message: "lack of data" })
   }
+
   const { user_idx } = accessTokenData;
   const { border_idx } = req.params;
+
   border
   .destroy({
     where:{user_idx,border_idx}
